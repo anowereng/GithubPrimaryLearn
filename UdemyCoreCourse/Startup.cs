@@ -18,9 +18,10 @@ namespace UdemyCoreCourse
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices(IServiceCollection services)
+          public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
+                .AddJsonOptions(options => options.SerializerSettings.ContractResolver = new DefaultContractResolver());
             services.AddCors(options =>
             {
                 options.AddPolicy("CorsPolicy",
@@ -35,6 +36,7 @@ namespace UdemyCoreCourse
                 configuration.RootPath = "ClientApp/dist";
             });
         }
+
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
@@ -60,7 +62,7 @@ namespace UdemyCoreCourse
                     name: "default",
                     template: "{controller}/{action=Index}/{id?}");
             });
-
+                      app.UseCors(x => x.AllowAnyHeader().AllowAnyOrigin().AllowAnyMethod());
             app.UseSpa(spa =>
             {
                 // To learn more about options for serving an Angular SPA from ASP.NET Core,
