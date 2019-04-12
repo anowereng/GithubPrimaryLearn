@@ -9,11 +9,11 @@ namespace UdemyCoreCourse.Data
 {
     public class AuthRepository 
     {
-        public Task<User> Login(string username, string password)
-        {
-            // var user = a
-            var user = await 
-        }
+        // public Task<User> Login(string username, string password)
+        // {
+        //     // var user = a
+        //     var user = await 
+        // }
 
         public async Task<User> Register(User user, string password)
         {
