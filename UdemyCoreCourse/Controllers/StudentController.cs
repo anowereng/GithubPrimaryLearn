@@ -49,10 +49,10 @@ namespace UdemyCoreCourse.Controllers
                 throw;
             }
         }
-        [HttpGet("[action]")]
-        public string GetName()
+        [HttpPost("[action]")]
+        public string GetName([FromBody]string name="")
         {
-            string name = "Anower Ullah";
+            //  name = "Anower Ullah";
             return name;
         }
         [HttpGet]
@@ -102,8 +102,6 @@ namespace UdemyCoreCourse.Controllers
             {
                 throw;
             }
-
-            return Ok(objEmp);
         }
 
         [HttpPost]
